@@ -1,0 +1,260 @@
+* {
+  cursor: crosshair;
+}
+
+p {
+  color: black;
+  text-align: center;
+  font-family: "Quicksand";
+  font-size: 1.5vw;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+.particles {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+.main .grid {
+  width: 75%;
+	height: 65%;
+	background-color: #fff;
+  background-color: rgba(255,255,255,0.5);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+	position: fixed;
+	top:0;
+	bottom: 0;
+	left: 0;
+  right: 0;
+
+  display: grid;
+  grid-template-columns: 7.5% 19% 4% 11% 25.25% 25.25% 8%;
+  grid-template-rows: 9% 13% 10% 10% 45% 6% 7%;
+
+	margin: auto;
+}
+
+
+
+.portrait {
+  grid-row: 3/6;
+  grid-column: 2/4;
+  /* border: solid red 3px; */
+}
+
+.portrait img {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.intro {
+  grid-row: 5/7;
+  grid-column: 5/7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav {
+  grid-row: 3/4;
+  grid-column: 6/7;
+}
+
+
+.icons span {
+  padding-right: .9em;
+
+}
+
+.greeting {
+  grid-row: 2/3;
+  grid-column: 5/6;
+}
+
+.reviews {
+  grid-row: 3/4;
+  grid-column: 2/3;
+  display: flex;
+  justify-self: left;
+  align-self: center;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+@keyframes pulse {
+  0% {
+    color: #ff60c5;
+  }
+
+  10% {
+    color: #ff6830;
+
+  }
+
+  20% {
+    color: #ffae51;
+  }
+
+  30% {
+    color: #fede64;
+
+  }
+
+  40% {
+    color: #feef45;
+  }
+
+  50% {
+    color: #c8dd7a;
+  }
+
+  60% {
+    color: #00bd92;
+
+  }
+
+  70% {
+    color: #00cbde;
+  }
+
+  80% {
+    color: #59ddfe;
+  }
+
+  90% {
+    color: #01baf2;
+  }
+
+  100% {
+    color: #025cd1;
+  }
+}
+
+.reviewButton {
+  grid-row: 3/4;
+  grid-column: 3/4;
+}
+
+.sdc {
+  grid-row: 4/5;
+  grid-column: 2/3;
+  display: flex;
+  justify-self: left;
+  align-self: center;
+}
+
+.sdcButton {
+  grid-row: 4/5;
+  grid-column: 3/4;
+}
+
+.exit {
+  grid-row: 1/2;
+  grid-column: 7/8;
+  display: flex;
+  justify-self: right;
+  align-self: center;
+}
+
+.exit:hover {
+  animation: spin 4s infinite linear,
+  pulse 5s infinite;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+
+.description {
+  grid-row: 5/6;
+  grid-column: 4/6;
+}
+
+.link {
+  grid-row: 6/7;
+  grid-column: 6/7;
+  font-family: "Quicksand";
+  font-style: bold;
+}
+
+.link a:hover {
+  animation: pulse 5s infinite;
+}
+
+.photo {
+  grid-row: 2/5;
+  grid-column: 6/7;
+}
+
+.photo img {
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+ul {
+  font-family: "Quicksand";
+  font-size: 1vw;
+  align-self: left;
+  padding: 0;
+  list-style-type: none;
+}
+
+ul.dashed {
+  list-style-type: none;
+}
+
+ul.dashed > li:before {
+  content: "- ";
+}
+
+li {
+  padding-bottom: .5vw;
+}
+
+.pointer {
+  grid-row: 6/7;
+  grid-column: 5/6;
+  justify-items: end;
+  animation: nudge 2s linear infinite alternate;
+}
+
+.pointer > img {
+  margin-top: 3%;
+  margin-left: 75%;
+}
+
+@keyframes nudge {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-15px, 0);
+  }
+}
+
+a {
+  font-family: "QuickSand";
+  font-weight: bold;
+  font-size: 1.5vw;
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
