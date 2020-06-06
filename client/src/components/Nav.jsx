@@ -1,10 +1,10 @@
 import React from 'react';
-import Pdf from '../assets/Matthew Ginther Résumé.pdf'
+import Pdf from '../assets/Matthew_Ginther_Resume.pdf'
 import { FiGithub } from 'react-icons/fi';
 import { RiLinkedinBoxLine } from 'react-icons/ri';
 import { GrDocumentUser, GrApps } from 'react-icons/gr';
 
-const Nav = ({ hover, exit, showProjects, tracker }) => {
+const Nav = ({ hover, exit, nav, tracker }) => {
   return (
     <div>
       <div className="icons">
@@ -23,7 +23,7 @@ const Nav = ({ hover, exit, showProjects, tracker }) => {
             <RiLinkedinBoxLine size="2vw" className="navBtn" />
           </a>
         </span>
-        <span onMouseOver={() => hover('Projects')} onMouseLeave={() => exit()} onClick={()=> {showProjects(); tracker('Open Projects')}}>
+        <span onMouseOver={() => hover('Projects')} onMouseLeave={() => exit()} onClick={()=> {nav("projects"); tracker('Open Projects')}}>
           <GrApps size="2vw" className="navBtn" />
         </span>
       </div>

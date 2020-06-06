@@ -77,6 +77,7 @@ body {
 .greeting {
   grid-row: 2/3;
   grid-column: 5/6;
+  -webkit-font-smoothing: auto;
 }
 
 .reviews {
@@ -252,9 +253,14 @@ a {
   font-weight: bold;
   font-size: 1.5vw;
   text-decoration: none;
+  color: black;
 }
 
 a:visited {
   text-decoration: none;
   color: black;
+}
+
+.mobileNav {
+  visibility: hidden;
 }

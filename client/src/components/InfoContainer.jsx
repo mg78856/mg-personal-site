@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-import Typed from 'react-typed';
-import Nav from './Nav.jsx';
-import Greeting from "./Greeting.jsx";
-import Portrait from "../assets/IMG_8350.png";
-import Eye from "./Eye.jsx";
-import Descrip from "./Descrip.jsx";
-import ScreenCap from "./ScreenCap.jsx";
-import Link from "./Link.jsx";
-import Pointer from "./Pointer.jsx"
-import { MdClose } from "react-icons/md";
+import Projects from "./Projects.jsx";
+import Home from './Home.jsx';
 import ReactGA from "react-ga";
+import MobileNav from "./MobileNav.jsx";
+import ProjectSelect from "./ProjectSelect.jsx";
+import AWayHome from "./AWayHome.jsx";
+import SysDesignProject from "./SysDesignProject.jsx";
+
 
 class InfoContainer extends Component {
 constructor(props){
@@ -20,14 +17,18 @@ constructor(props){
     description: true,
     eyeOne: false,
     eyeTwo: true,
-    color: null
+    color: null,
+    width: null,
+    height: null,
+    view: "home"
   }
   this.handleHover = this.handleHover.bind(this);
   this.handleHoverExit = this.handleHoverExit.bind(this);
-  this.handleProjects = this.handleProjects.bind(this);
   this.handleEyeOne = this.handleEyeOne.bind(this);
   this.handleEyeTwo = this.handleEyeTwo.bind(this);
   this.handleTrack = this.handleTrack.bind(this);
+  this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  this.handleView = this.handleView.bind(this);
 }
 
 handleHover (article) {
@@ -44,13 +45,6 @@ handleHoverExit () {
   })
 }
 
-handleProjects () {
-this.setState(state => ({
-  description: !state.description,
-  switchType: false
-}));
-}
-
 handleEyeOne (){
   this.setState({
     eyeOne: false,
@@ -62,7 +56,6 @@ handleEyeTwo () {
   this.setState({
     eyeOne: true,
     eyeTwo: false
-
   })
 }
 
@@ -73,59 +66,43 @@ handleTrack (action) {
   })
 }
 
+handleView (page) {
+  this.setState({
+    view: page,
+    switchType: false
+  })
+}
+
+updateWindowDimensions() {
+  this.setState({ width: window.innerWidth, height: window.innerHeight });
+}
+
+
+componentDidMount() {
+  this.updateWindowDimensions();
+  window.addEventListener('resize', this.updateWindowDimensions);
+}
+
+componentWillUnmount() {
+  window.removeEventListener('resize', this.updateWindowDimensions);
+}
 
 render() {
-  if (this.state.description === true) {
-    return (
-      <div className="grid">
-        <div className="portrait">
-           <img src={Portrait} />
-        </div>
-      <div className="intro">
-        <p> I’m Matthew Ginther, a Software Engineer based in Los Angeles, I’m adept in Javascript and its frameworks (React, Node.js).
-        </p>
-      </div>
-      <div className="nav">
-        <Nav hover={this.handleHover} exit={this.handleHoverExit} showProjects={this.handleProjects} tracker={this.handleTrack}/>
-      </div>
-      <div className="greeting">
-              <Greeting selection={this.state.menu} switchType={this.state.switchType}color={this.state.color}/>
-       </div>
-      </div>
-    )
-  } else if (this.state.description === false) {
-    return (
-      <div className="grid">
-        <div className="reviews">
-        <Typed strings={["A Way Home"]}　typeSpeed={40} loop={false} style={{fontSize: "3.3.5vw", fontFamily: "Quicksand", fontWeight: "bold"}}/>
-      </div>
-      <button className="reviewButton" onMouseEnter={this.handleEyeOne} >
-        <Eye closed={this.state.eyeOne}/>
-      </button>
-      <div className="sdc">
-        <Typed strings={["Mock System Design"]}　typeSpeed={40} loop={false} style={{fontSize: "3.3.5vw", fontFamily: "Quicksand", fontWeight: "bold"}}/>
-      </div>
-      <button className="sdcButton" onMouseEnter={this.handleEyeTwo} >
-        <Eye closed={this.state.eyeTwo}/>
-      </button>
-      <button className="exit" onClick={this.handleProjects}>
-        <MdClose size="2vw" />
-      </button>
-      <div className="description">
-        <Descrip eyeOne={this.state.eyeOne} eyeTwo={this.state.eyeTwo} />
-      </div>
-      <div className="photo">
-        <ScreenCap eyeOne={this.state.eyeOne} eyeTwo={this.state.eyeTwo} />
-      </div>
-      <div className="link">
-        <Link eyeOne={this.state.eyeOne} eyeTwo={this.state.eyeTwo} />
-      </div>
-      <div className="pointer">
-        <Pointer eyeOne={this.state.eyeOne} eyeTwo={this.state.eyeTwo} />
-      </div>
-      </div>
-    )
+  if (this.state.view === "home") {
+    return <Home handleHover={this.handleHover} handleHoverExit={this.handleHoverExit} handleTrack={this.handleTrack} menu={this.state.menu} color={this.state.color} switchType={this.state.switchType} width={this.state.width} nav={this.handleView}/>
+  } else if (this.state.view === "projects") {
+    return <Projects eyeOne={this.state.eyeOne} eyeTwo={this.state.eyeTwo}      handleEyeOne={this.handleEyeOne} handleEyeTwo={this.handleEyeTwo} handleProjects={this.handleView}/>
+  } else if (this.state.view === "mobileNav") {
+    return <MobileNav back={this.handleView}/>
+  } else if (this.state.view === "mobileProjects"){
+    return <ProjectSelect nav={this.handleView}/>
+  } else if (this.state.view === "aWayHome"){
+    return <AWayHome nav={this.handleView}/>
+  } else if ( this.state.view === "sdc"){
+    return <SysDesignProject nav={this.handleView}/>
   }
+
+
 }
 };
 
